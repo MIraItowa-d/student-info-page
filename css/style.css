@@ -212,9 +212,15 @@ body {
   background-color: #F8F8F8;
 }
 
+.function-btn > svg:first-child,
 .check-icon {
   flex-shrink: 0;
   margin-right: 12px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-text {
@@ -386,7 +392,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 15px 20px;
+  padding: 15px 20px 15px calc(20px + 10%);
   border-bottom: none;
 }
 
