@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>学信档案 - my.chsi.com.cn</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  
+  <!-- 页面1：首页 -->
+  <div id="page-home" class="page">
+    <div class="page-container">
+      <img src="页面1.jpg" alt="学信档案首页" class="page-image">
+      
+      <!-- 高等教育信息热区 -->
+      <a href="#education" class="hotspot hotspot-education" title="高等教育信息"></a>
+      
+      <!-- 其他区域热区（触发加载失败） -->
+      <div class="hotspot-invalid" onclick="showLoading()"></div>
+    </div>
+  </div>
+
+  <!-- 页面2：高等教育信息页 -->
+  <div id="page-education" class="page" style="display: none;">
+    <div class="page-container">
+      <img src="页面2.jpg" alt="高等教育信息" class="page-image">
+      
+      <!-- 返回按钮 -->
+      <a href="#home" class="back-button"></a>
+      
+      <!-- 学籍信息卡片热区（重庆邮电大学本科） -->
+      <a href="#detail" class="hotspot hotspot-student-record" title="查看学籍详情"></a>
+    </div>
+  </div>
+
+  <!-- 加载失败页面 -->
+  <div id="page-loading" class="page" style="display: none;">
+    <div class="loading-container">
+      <div class="progress-bar">
+        <div class="progress-bar-inner"></div>
+      </div>
+      <p class="loading-text">加载中...</p>
+      <button class="btn-back" onclick="window.history.back()">返回</button>
+    </div>
+  </div>
+
+  <!-- 页面3：学籍详情页（完整开发） -->
+  <div id="page-detail" class="page" style="display: none;">
+    <div class="detail-container">
+      
+      <!-- 导航栏 -->
+      <header class="detail-header">
+        <a href="#education" class="back-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M15 18L9 12L15 6" stroke="#333" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <h1 class="detail-title">高等学籍</h1>
+        <div class="header-placeholder"></div>
+      </header>
+
+      <!-- 功能按钮区 -->
+      <div class="function-buttons">
+        <div class="function-btn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink: 0;">
+            <rect x="4" y="4" width="16" height="16" rx="2" stroke="#4A9EFF" stroke-width="2" fill="none"/>
+            <circle cx="12" cy="10" r="2" fill="#4A9EFF"/>
+            <path d="M8 18L10 14L14 14L16 18" stroke="#4A9EFF" stroke-width="2" fill="none"/>
+          </svg>
+          <span class="btn-text">查看图像采集码</span>
+          <svg class="arrow-right" width="20" height="20" viewBox="0 0 24 24">
+            <path d="M9 18L15 12L9 6" stroke="#D0D0D0" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="function-btn">
+          <div class="check-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" fill="#20C997"/>
+              <path d="M8 12L11 15L16 9" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+            </svg>
+          </div>
+          <span class="btn-text">学历照片正确</span>
+          <span class="modify-text">修改</span>
+          <svg class="arrow-right" width="20" height="20" viewBox="0 0 24 24">
+            <path d="M9 18L15 12L9 6" stroke="#D0D0D0" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 学籍卡片区域 -->
+      <div class="student-card">
+        <div class="card-content">
+          <div class="photo-section">
+            <div class="photo-wrapper">
+              <img id="admission-photo-img" src="assets/default-avatar.jpg" alt="录取照片" class="student-photo">
+              <input type="file" id="upload-admission-photo" accept="image/*" style="display: none;">
+              <div class="photo-label">录取照片</div>
+            </div>
+            <div class="photo-wrapper">
+              <img id="diploma-photo-img" src="assets/default-avatar.jpg" alt="学历照片" class="student-photo">
+              <input type="file" id="upload-diploma-photo" accept="image/*" style="display: none;">
+              <div class="photo-label">学历照片</div>
+            </div>
+          </div>
+          
+          <div class="info-section">
+            <div class="name-info">
+              <span class="student-name" id="display-name">杨婷婷</span>
+            </div>
+            <div class="basic-details">
+              <span class="gender" id="display-gender">女</span>
+              <span class="birth-date" id="display-birth">2001年03月11日</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="school-section">
+          <span class="school-name" id="display-school">华中科技大学</span>
+          <span class="education-badge" id="display-level">本科</span>
+        </div>
+        
+        <div class="major-section">
+          <span class="major-text" id="display-major">网络与空间安全</span>
+          <span class="divider">|</span>
+          <span class="study-form" id="display-form">普通全日制</span>
+        </div>
+      </div>
+
+      <!-- 详细信息区域 -->
+      <div class="detail-info">
+        <div class="info-row">
+          <span class="info-label">民族</span>
+          <span class="info-value" id="display-nation">汉族</span>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">证件号码</span>
+          <span class="info-value" id="display-id">50022520010311002X</span>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">学制</span>
+          <span class="info-value" id="display-duration">4年</span>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">学历类别</span>
+          <span class="info-value" id="display-type">普通高等教育</span>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">分院</span>
+          <span class="info-value" id="display-college">网络空间安全学院</span>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">系所</span>
+          <span class="info-value" id="display-dept">网络空间安全学院</span>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">班级</span>
+          <span class="info-value" id="display-class">网安学院本2201班</span>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">学号</span>
+          <span class="info-value" id="display-student-id">U202263182</span>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">入学日期</span>
+          <span class="info-value" id="display-admission-date">2022年09月01日</span>
+        </div>
+
+        <div class="info-row" id="status-row">
+          <span class="info-label">学籍状态</span>
+          <span class="info-value">在籍（注册学籍）</span>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">预计毕业日期</span>
+          <span class="info-value">2026年07月01日</span>
+        </div>
+      </div>
+
+      <!-- 底部按钮 -->
+      <div class="detail-footer">
+        <button class="btn-report-full" onclick="alert('查看验证报告')">查看验证报告</button>
+      </div>
+
+      <!-- 编辑模态框 -->
+      <div id="edit-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">编辑学籍信息</h3>
+            <button class="modal-close" onclick="closeEditModal()">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="edit-field">
+              <label>姓名</label>
+              <input type="text" id="edit-name" class="edit-input">
+            </div>
+            <div class="edit-field">
+              <label>性别</label>
+              <select id="edit-gender" class="edit-input">
+                <option value="女">女</option>
+                <option value="男">男</option>
+              </select>
+            </div>
+            <div class="edit-field">
+              <label>出生日期</label>
+              <input type="date" id="edit-birth" class="edit-input">
+            </div>
+            <div class="edit-field">
+              <label>学校名称</label>
+              <input type="text" id="edit-school" class="edit-input">
+            </div>
+            <div class="edit-field">
+              <label>教育层次</label>
+              <select id="edit-level" class="edit-input">
+                <option value="博士研究生">博士研究生</option>
+                <option value="硕士研究生">硕士研究生</option>
+                <option value="本科">本科</option>
+                <option value="专科">专科</option>
+              </select>
+            </div>
+            <div class="edit-field">
+              <label>专业</label>
+              <input type="text" id="edit-major" class="edit-input">
+            </div>
+            <div class="edit-field">
+              <label>学习形式</label>
+              <select id="edit-form" class="edit-input">
+                <option value="普通全日制">普通全日制</option>
+                <option value="非全日制">非全日制</option>
+              </select>
+            </div>
+            <div class="edit-field">
+              <label>民族</label>
+              <input type="text" id="edit-nation" class="edit-input">
+            </div>
+            <div class="edit-field">
+              <label>证件号码</label>
+              <input type="text" id="edit-id" class="edit-input" maxlength="18">
+            </div>
+            <div class="edit-field">
+              <label>学制</label>
+              <input type="text" id="edit-duration" class="edit-input">
+            </div>
+            <div class="edit-field">
+              <label>学历类别</label>
+              <input type="text" id="edit-type" class="edit-input">
+            </div>
+            <div class="edit-field">
+              <label>分院</label>
+              <input type="text" id="edit-college" class="edit-input">
+            </div>
+            <div class="edit-field">
+              <label>系所</label>
+              <input type="text" id="edit-dept" class="edit-input">
+            </div>
+            <div class="edit-field">
+              <label>班级</label>
+              <input type="text" id="edit-class" class="edit-input">
+            </div>
+            <div class="edit-field">
+              <label>学号</label>
+              <input type="text" id="edit-student-id" class="edit-input">
+            </div>
+            <div class="edit-field">
+              <label>入学日期</label>
+              <input type="date" id="edit-admission-date" class="edit-input">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn-cancel" onclick="closeEditModal()">取消</button>
+            <button class="btn-confirm" onclick="saveEditedData()">保存</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 浮动编辑按钮 -->
+      <!-- 已移除：通过连续点击3次"学籍状态"触发编辑 -->
+
+    </div>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/form.js"></script>
+  <script src="js/router.js"></script>
+
+</body>
+</html>
